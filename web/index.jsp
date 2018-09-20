@@ -22,13 +22,17 @@
     </tr>
     <tr>
       <%
+        Connection con = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+
         try {
           Context context = new InitialContext();
           DataSource ds = (DataSource) context.lookup("java/comp/env/jdbc/jspDS");
-          Connection con = ds.getConnection();
+          con = ds.getConnection();
 
-          PreparedStatement pstmt = con.prepareStatement("select num,title,writer,regdate from testboard");
-          ResultSet rs = pstmt.executeQuery();
+          pstmt = con.prepareStatement("select num,title,writer,regdate from testboard");
+          rs = pstmt.executeQuery();
 
           while(rs.next()){
               int num = rs.getInt("num");
@@ -39,14 +43,18 @@
               out.println("<td>"+num+"</td><td>"+title+"</td><td>"+writer+"</td><td>"+regdate+"</td>");
           }
 
-          rs.close();
-          pstmt.close();
-          con.close();
         } catch (NamingException e) {
           e.printStackTrace();
         } catch (SQLException e) {
           e.printStackTrace();
         } finally {
+          try {
+            if(rs != null) rs.close();
+            if(pstmt != null) pstmt.close();
+            if(con != null) con.close();
+          } catch (SQLException e) {
+            e.printStackTrace();
+          }
         }
       %>
     </tr>
