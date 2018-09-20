@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context path="/">
+    <Resource name="jdbc/jspDS"
+              factory="org.apache.tomcat.jdbc.pool.DataSourceFactory"
+              auth="Container"
+              type="javax.sql.DataSource"
+              driverClassName="com.mysql.jdbc.Driver"
+              url="jdbc:mysql://127.0.0.1:3306/testdb"
+              username="test" password="test"
+    />
+</Context>
