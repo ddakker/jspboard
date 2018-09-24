@@ -37,8 +37,12 @@
         DataSource ds = (DataSource)context.lookup("java:comp/env/jdbc/jspDS");
         con = ds.getConnection();
 
-        content = content.replace("<","&lt");
-        content = content.replace(">","&gt");
+        writer = writer.replace("&","&amp");
+        writer = writer.replace("<","&lt").replace(">","&gt").replace(" ","&nbsp").replace("\"","&quot");
+        title = title.replace("&","&amp");
+        title = title.replace("<","&lt").replace(">","&gt").replace(" ","&nbsp").replace("\"","&quot");
+        content = content.replace("&","&amp");
+        content = content.replace("<","&lt").replace(">","&gt").replace(" ","&nbsp").replace("\"","&quot");
 
         String modifySql = "UPDATE testboard SET title=?, writer=?, content=?, pwd=?, regdate=now() WHERE num="+num;
 
