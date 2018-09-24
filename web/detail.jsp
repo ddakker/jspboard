@@ -93,7 +93,6 @@
     <h1>글 상세보기</h1>
     <div id="wrap">
         글쓴이<br>
-        <input type="text" id="writer" name="writer" maxlength="50"><br>
         <%
             out.println("<input type=\"text\" id=\"writer\" name=\"writer\" maxlength=\"50\" readonly=\"readonly\" value="+writer+"><br>");
         %>
