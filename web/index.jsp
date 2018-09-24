@@ -9,7 +9,7 @@
   Time: 오후 11:31
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <html>
   <head>
     <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
@@ -47,6 +47,8 @@
     </tr>
 
       <%
+        request.setCharacterEncoding("UTF-8");
+
         Connection con = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
@@ -71,7 +73,7 @@
 
         try {
           Context context = new InitialContext();
-          DataSource ds = (DataSource) context.lookup("java:/comp/env/jdbc/jspDS");
+          DataSource ds = (DataSource) context.lookup("java:comp/env/jdbc/jspDS");
           con = ds.getConnection();
 
           String totalRowsSql = "SELECT IFNULL(COUNT(NUM),0) FROM testboard"; // 전체 글 수 구하기

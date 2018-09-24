@@ -9,7 +9,7 @@
   Time: 오후 2:24
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <html>
 <head>
     <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
@@ -46,6 +46,7 @@
 </head>
 <body>
 <%
+    request.setCharacterEncoding("UTF-8");
     String num = request.getParameter("num");
     String pageNumNow = request.getParameter("pageNumNow");
 
@@ -59,7 +60,7 @@
     Date regdate = null;
     try {
         Context context = new InitialContext();
-        DataSource ds = (DataSource)context.lookup("java:/comp/env/jdbc/jspDS");
+        DataSource ds = (DataSource)context.lookup("java:comp/env/jdbc/jspDS");
         con = ds.getConnection();
 
         String detailSql = "SELECT writer, title, content, pwd, regdate FROM testboard WHERE num="+num;

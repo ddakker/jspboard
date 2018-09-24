@@ -5,7 +5,7 @@
   Time: 오전 2:19
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <html>
 <head>
     <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
@@ -76,6 +76,7 @@
     <h1>글쓰기</h1>
     <div id="wrap">
         <%
+            request.setCharacterEncoding("UTF-8");
             String pageNumNow = request.getParameter("pageNumNow");
             out.println("<form  id=\"writeForm\" name=\"writeForm\" onsubmit=\"return validCheck();\" action=\"write_process.jsp?pageNumNow="+pageNumNow+"\" method=\"post\">");
         %>

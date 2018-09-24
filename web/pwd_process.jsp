@@ -12,13 +12,14 @@
   Time: 오후 6:08
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <html>
 <head>
     <title>Title</title>
 </head>
 <body>
 <%
+    request.setCharacterEncoding("UTF-8");
     String num = request.getParameter("num");
     String pageNumNow = request.getParameter("pageNumNow");
     String cmd = request.getParameter("cmd");
@@ -31,7 +32,7 @@
 
     try {
         Context context = new InitialContext();
-        DataSource ds = (DataSource)context.lookup("java:/comp/env/jdbc/jspDS");
+        DataSource ds = (DataSource)context.lookup("java:comp/env/jdbc/jspDS");
         con = ds.getConnection();
 
         String pwdSql = "SELECT pwd FROM testboard where num="+num;
